@@ -1,0 +1,70 @@
+# Path to the test file (Liquid template)
+#
+# Variables:
+#
+# - `manifest_dir`: Package directory
+# - `contest`:      Contest ID (e.g. "abc100")
+# - `problem`:      Problem index (e.g. "A", "B")
+#
+# Additional filters:
+#
+# - `kebabcase`: Convert to kebab case (by using the `heck` crate)
+test-suite = "{{ manifest_dir }}/testcases/{{ problem | kebabcase }}.yml"
+#test-suite = "./testcases/{{ contest }}/{{ problem | kebabcase }}.yml"
+
+# Open files with the command (`jq` command)
+#
+# VSCode:
+#open = '["bash", "-c"] + ["code -a " + .manifest_dir + " && code " + (.paths | map([.src, .test_suite]) | flatten | join(" "))]'
+# Emacs:
+#open = '["emacsclient", "-n"] + (.paths | map([.src, .test_suite]) | flatten)'
+
+[new]
+# Platform
+#
+# - atcoder
+# - codeforces
+# - yukicoder
+platform = "atcoder"
+# Path (Liquid template)
+#
+# Variables:
+#
+# - `contest`:      Contest ID. **May be nil**
+# - `package_name`: Package name
+path = "./{{ contest }}"
+
+[new.template.dependencies]
+kind = "inline"
+content = ""
+
+[new.template.src]
+kind = "inline"
+content = '''
+use std::io::{self, Read as _};
+
+fn main() {
+    let mut input = String::new();
+    io::stdin().read_to_string(&mut input).unwrap();
+    let mut input = input.split_whitespace();
+    macro_rules! read(
+        ([$tt:tt]) => (read!([$tt; read!(usize)]));
+        ([$tt:tt; $n:expr]) => ((0..$n).map(|_| read!($tt)).collect::<Vec<_>>());
+        (($($tt:tt),+)) => (($(read!($tt)),*));
+        ($ty:ty) => (input.next().unwrap().parse::<$ty>().unwrap());
+    );
+
+    let n = read!(usize);
+}
+'''
+
+#[submit.transpile]
+#kind = "command"
+#args = ["cargo", "equip", "--oneline", "mods", "--rustfmt", "--check", "--bin", "{{ bin_name }}"]
+#language_id = ""
+
+#[submit.via-binary]
+#target = "x86_64-unknown-linux-musl"
+##cross = "cross"
+#strip = "strip"
+##upx = "upx"

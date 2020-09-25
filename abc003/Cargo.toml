@@ -1,0 +1,31 @@
+[package]
+name = "abc003"
+version = "0.1.0"
+edition = "2018"
+publish = false
+
+[package.metadata.cargo-compete]
+config = "../compete.toml"
+
+[package.metadata.cargo-compete.bin]
+a = { name = "abc003-a", problem = { platform = "atcoder", contest = "abc003", index = "A", url = "https://atcoder.jp/contests/abc003/tasks/abc003_1" } }
+b = { name = "abc003-b", problem = { platform = "atcoder", contest = "abc003", index = "B", url = "https://atcoder.jp/contests/abc003/tasks/abc003_2" } }
+c = { name = "abc003-c", problem = { platform = "atcoder", contest = "abc003", index = "C", url = "https://atcoder.jp/contests/abc003/tasks/abc003_3" } }
+d = { name = "abc003-d", problem = { platform = "atcoder", contest = "abc003", index = "D", url = "https://atcoder.jp/contests/abc003/tasks/abc003_4" } }
+
+[[bin]]
+name = "abc003-a"
+path = "src/bin/a.rs"
+
+[[bin]]
+name = "abc003-b"
+path = "src/bin/b.rs"
+
+[[bin]]
+name = "abc003-c"
+path = "src/bin/c.rs"
+
+[[bin]]
+name = "abc003-d"
+path = "src/bin/d.rs"
+[dependencies]

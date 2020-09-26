@@ -1,0 +1,41 @@
+---
+type: Batch
+timelimit: 2s
+match: Lines
+
+cases:
+  - name: sample1
+    in: |
+      . . . .
+      . o o .
+      . x x .
+      . . . .
+    out: |
+      . . . .
+      . x x .
+      . o o .
+      . . . .
+  - name: sample2
+    in: |
+      o o x x
+      o o x x
+      x x o o
+      x x o o
+    out: |
+      o o x x
+      o o x x
+      x x o o
+      x x o o
+  - name: sample2
+    in: |
+      . . . .
+      . o o o
+      . x x .
+      x . . .
+    out: |
+      . . . x
+      . x x .
+      o o o .
+      . . . .
+
+extend: []

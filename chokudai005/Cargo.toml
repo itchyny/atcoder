@@ -1,0 +1,16 @@
+[package]
+name = "chokudai005"
+version = "0.1.0"
+edition = "2018"
+publish = false
+
+[package.metadata.cargo-compete]
+config = "../compete.toml"
+
+[package.metadata.cargo-compete.bin]
+a = { name = "chokudai005-a", problem = { platform = "atcoder", contest = "chokudai005", index = "A", url = "https://atcoder.jp/contests/chokudai005/tasks/chokudai005_a" } }
+
+[[bin]]
+name = "chokudai005-a"
+path = "src/bin/a.rs"
+[dependencies]
